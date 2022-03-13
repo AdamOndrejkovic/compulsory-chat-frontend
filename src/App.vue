@@ -1,11 +1,15 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/sign-in">Sign In</router-link>
   </div>
   <router-view />
 </template>
-
+<script lang="ts">
+import { defineComponent } from "vue"
+export default defineComponent({
+})
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -13,6 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  overflow: hidden;
 }
 
 #nav {
