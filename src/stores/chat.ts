@@ -6,13 +6,16 @@ const chatService = new ChatService();
 
 export const useChatStore = defineStore('chat',{
   state: () => ({
-    chats: [{ text: "First chat" }, { text: "Second chat" }] as ChatType[],
+    chats: [] as ChatType[],
     room: "",
+    typing: ""
   }),
   actions: {
+    isTyping(username: string) {
+      chatService.isTyping(username)
+    },
     createChat(chat: ChatType) {
       chatService.createChat(chat);
-      this.chats.push(chat);
     },
     receiveChat(chat: ChatType) {
       this.chats.push(chat);
@@ -24,5 +27,13 @@ export const useChatStore = defineStore('chat',{
         this.chats.push(chat);
       });
     },
+    typingListener() {
+      chatService.isTypingListener((name) => {
+        this.typing = name;
+      })
+    },
+    sendFriendRequest(sender: string, receiver: string) {
+      chatService.sendFriendRequest(sender, receiver)
+    }
   },
 });

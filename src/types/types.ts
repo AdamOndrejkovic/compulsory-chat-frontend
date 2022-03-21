@@ -10,3 +10,9 @@ export interface Chat {
   text: string;
   room: string;
 }
+
+export interface Room {
+  id: string;
+  name: string;
+  createdBy: string;
+}

@@ -1,6 +1,6 @@
 import axios from "axios"
-import {User} from "@/types/types";
-import { LoginUser, RegisterUser } from "@/types/api";
+import { Room, User } from "@/types/types";
+import { CreateRoom, LoginUser, RegisterUser } from "@/types/api";
 
 const client = axios.create({
   baseURL: "http://localhost:3000",
@@ -11,7 +11,6 @@ const client = axios.create({
 
 client.interceptors.response.use(
   (response) => {
-    console.log(response.data)
     return response.data
   },
   (error) => {
@@ -26,5 +25,14 @@ export default{
   },
   loginUser: async (user: LoginUser): Promise<User> => {
     return await client.post("/users/login", user)
+  },
+  getUsers: async (): Promise<User[]> => {
+    return await client.get("/users/users")
+  },
+  createRoom: async  (room: CreateRoom): Promise<Room> => {
+    return await client.post("/room/create", room )
+  },
+  getRooms: async  (): Promise<Room[]> => {
+    return await client.get("/room/rooms")
   }
 }

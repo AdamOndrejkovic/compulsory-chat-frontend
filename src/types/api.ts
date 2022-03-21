@@ -8,3 +8,8 @@ export interface LoginUser {
   email: string;
   password: string;
 }
+
+export interface CreateRoom {
+  name: string;
+  createdBy: string;
+}
